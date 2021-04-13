@@ -79,22 +79,16 @@ function Charts(sample) {
         domain: info,
         value: washfreq,
         type: "indicator",
+        mode: "gauge+number",
         gauge: {
             axis: {range: [null, 9]},
-            steps: [
-                {range: [0,1], color: "white"},
-                {range: [1,2], color: "beige"},
-                {range: [2,3], color: "tan"},
-                {range: [3,4], color: "lightyellow"},
-                {range: [4,5], color: "yellowgreen"},
-                {range: [5,6], color: "lightgreen"},
-                {range: [6,7], color: "beige"},
-                {range: [7,8], color: "beige"},
-                {range: [8,9], color: "beige"}
+        },
+        title: {text: "Belly Button Washing Frequency"},
+        }]
+        Plotly.newPlot("gauge", data,layout)
+    });
 
-            ]
-        }
-    }]
-});
+
+        
 }
 init();
