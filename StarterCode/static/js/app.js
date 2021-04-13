@@ -68,5 +68,33 @@ function Charts(sample) {
     }];
     Plotly.newPlot("bar", data)
     });
-};
+    d3.json("samples.json").then(({metadata})=> {
+        console.log(metadata);
+    var sampleID = metadata.filter(sampleID => sampleID.id == sample);
+    var info = sampleID[0];
+    var washfreq = info.wfreq
+    console.log(washfreq)
+    var layout = {width: 600, height: 450, margin: { t: 0, b: 0 }};
+    var data = [{
+        domain: info,
+        value: washfreq,
+        type: "indicator",
+        gauge: {
+            axis: {range: [null, 9]},
+            steps: [
+                {range: [0,1], color: "white"},
+                {range: [1,2], color: "beige"},
+                {range: [2,3], color: "tan"},
+                {range: [3,4], color: "lightyellow"},
+                {range: [4,5], color: "yellowgreen"},
+                {range: [5,6], color: "lightgreen"},
+                {range: [6,7], color: "beige"},
+                {range: [7,8], color: "beige"},
+                {range: [8,9], color: "beige"}
+
+            ]
+        }
+    }]
+});
+}
 init();
